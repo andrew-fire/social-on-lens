@@ -2,14 +2,8 @@
 
 import { ApolloProvider, ApolloClient, InMemoryCache } from "@apollo/client";
 import { useAccount } from "wagmi";
-import { SessionType, useSession } from "@lens-protocol/react-web";
-import { truncateEthAddress } from "@/utils/truncateEthAddress";
-import {
-  ConnectWalletButton,
-  DisconnectWalletButton,
-  LoginForm,
-  Profile,
-} from "@/components";
+import { useSession } from "@lens-protocol/react-web";
+import { LoginForm } from "@/components";
 import { Header } from "@/components/Header";
 
 const client = new ApolloClient({

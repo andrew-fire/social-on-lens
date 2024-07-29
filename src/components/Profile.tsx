@@ -2,7 +2,7 @@ import React from "react";
 import { useQuery } from "@apollo/client";
 import { PROFILE_QUERY } from "@/app/queries";
 
-export function Profile({ address }: { address: string }) {
+export function Profile({ address }: { address: string | string[] }) {
   const { data, loading, error } = useQuery(PROFILE_QUERY, {
     variables: { address },
   });
