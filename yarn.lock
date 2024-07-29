@@ -12,6 +12,33 @@
   resolved "https://registry.yarnpkg.com/@alloc/quick-lru/-/quick-lru-5.2.0.tgz#7bf68b20c0a350f936915fcae06f58e32007ce30"
   integrity sha512-UrcABB+4bUrFABwbluTIBErXwvbsU/V7TZWfmbgJfbkwiBuziS9gxdODUyuiecfdGQ85jglMW6juS3+z5TsKLw==
 
+"@apollo/client-react-streaming@0.11.2":
+  version "0.11.2"
+  resolved "https://registry.yarnpkg.com/@apollo/client-react-streaming/-/client-react-streaming-0.11.2.tgz#788a5b0254469b679f8abf5391e40c420fe61965"
+  integrity sha512-rRA/dIA09/Y6+jtGGBnXHQfPOv6BYYVZwQP8OzQtWrWbSgDEI6uAhqULssU5f0ZhQJVzKDuslqGE9QAX0gdfRQ==
+  dependencies:
+    ts-invariant "^0.10.3"
+
+"@apollo/client@^3.11.0-rc.2":
+  version "3.11.0-rc.2"
+  resolved "https://registry.yarnpkg.com/@apollo/client/-/client-3.11.0-rc.2.tgz#69cbdf263330edf313f02f782ab30a3b8420c5d1"
+  integrity sha512-k5mj92/WKwMpnrViL3+EYGQwQ7grlo3xho9ZLIU/Y7+7KLGHpXVtb4lrqoZHA1+SqXFciZOu4sUx5ysAuv325g==
+  dependencies:
+    "@graphql-typed-document-node/core" "^3.1.1"
+    "@wry/caches" "^1.0.0"
+    "@wry/equality" "^0.5.6"
+    "@wry/trie" "^0.5.0"
+    graphql-tag "^2.12.6"
+    hoist-non-react-statics "^3.3.2"
+    optimism "^0.18.0"
+    prop-types "^15.7.2"
+    rehackt "^0.1.0"
+    response-iterator "^0.2.6"
+    symbol-observable "^4.0.0"
+    ts-invariant "^0.10.3"
+    tslib "^2.3.0"
+    zen-observable-ts "^1.2.5"
+
 "@apollo/client@^3.9.5":
   version "3.11.1"
   resolved "https://registry.yarnpkg.com/@apollo/client/-/client-3.11.1.tgz#73a0396a4a5d84d6804288fffa9579e1f3fc3211"
@@ -31,6 +58,13 @@
     ts-invariant "^0.10.3"
     tslib "^2.3.0"
     zen-observable-ts "^1.2.5"
+
+"@apollo/experimental-nextjs-app-support@^0.11.2":
+  version "0.11.2"
+  resolved "https://registry.yarnpkg.com/@apollo/experimental-nextjs-app-support/-/experimental-nextjs-app-support-0.11.2.tgz#3df9253229afd6ec94bc5873f649f23c487c9dfb"
+  integrity sha512-HRQ8/Ux/tM2pezrhZeoHsJs55+nJvJZRV1B21QwEVtWhslQXjT5gqs5nKw86KURF0xR7gX18Nyy659NzJ09Pmw==
+  dependencies:
+    "@apollo/client-react-streaming" "0.11.2"
 
 "@babel/code-frame@^7.24.7":
   version "7.24.7"
@@ -3605,7 +3639,7 @@ graphql-tag@^2.12.6:
   dependencies:
     tslib "^2.1.0"
 
-graphql@^16.8.1:
+graphql@^16.8.1, graphql@^16.9.0:
   version "16.9.0"
   resolved "https://registry.yarnpkg.com/graphql/-/graphql-16.9.0.tgz#1c310e63f16a49ce1fbb230bd0a000e99f6f115f"
   integrity sha512-GGTKBX4SD7Wdb8mqeDLni2oaRGYQWjWHGKPQ24ZMnUtKfcsVoiv4uX8+LJr1K6U5VW2Lu1BwJnj7uiori0YtRw==

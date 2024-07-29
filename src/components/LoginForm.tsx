@@ -41,9 +41,11 @@ export function LoginForm({ owner, onSuccess }: { owner: string; onSuccess?: () 
   }
 
   return (
-    <form onSubmit={onSubmit} className="flex">
+    <form onSubmit={onSubmit} className="w-full">
       <fieldset className="flex place-items-center flex-col">
-        <legend className="text-base text-gray-500">Select a Lens Profile to login with.</legend>
+        <p className="text-base text-gray-500">
+          Select a Lens Profile to login with.
+        </p>
 
         <div className="my-4 space-y-2">
           {profiles.map((profile, idx) => (
