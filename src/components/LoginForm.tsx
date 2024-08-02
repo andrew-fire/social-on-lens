@@ -20,25 +20,20 @@ export function LoginForm({ owner, onSuccess }: { owner: string; onSuccess?: () 
       profileId: id,
     });
 
-    if (result.isSuccess()) {
-      console.info(`Welcome ${String(result.value?.handle?.fullHandle ?? result.value?.id)}`);
-      return onSuccess?.();
-    }
+    if (result.isSuccess()) return onSuccess?.();
 
     console.error(result.error.message);
   };
 
-  if (loading) {
-    return <Loading />;
-  }
-
-  if (error) {
-    return <ErrorMessage error={error} />;
-  }
-
-  if (profiles.length === 0) {
-    return <p className="mb-4 text-base text-gray-500">No Lens Profiles found in this wallet.</p>;
-  }
+  if (loading) return <Loading />;
+  if (error) return <ErrorMessage error={error} />;
+  if (profiles.length === 0)
+    return (
+      <p className="mb-4 text-base text-gray-500">
+        No Lens Profiles found in this wallet.
+      </p>
+    );
+  
 
   return (
     <form onSubmit={onSubmit} className="w-full">

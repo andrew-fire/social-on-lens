@@ -5,7 +5,8 @@ import { PROFILE_QUERY } from "@/app/queries";
 import { useQuery } from "@apollo/client";
 import { Session, SessionType } from "@lens-protocol/react-web";
 import { Composer } from "./Composer";
-import { MyPublications } from "./MyPublications";
+import { UserPublications } from "./UserPublications";
+import { Button } from "./Button";
 
 export function Profile({
   address,
@@ -26,9 +27,30 @@ export function Profile({
     return <p>There no profile associated with address: {address}</p>;
 
   return (
-    <div className="flex flex-col gap-5">
+    <div className="flex flex-col gap-10">
       <h1 className="text-4xl font-semibold">
-        {profile?.metadata?.displayName ?? `@${profile?.handle.fullHandle}`}
+        <div className="flex items-start justify-between w-1/2">
+          <div className="w-full">
+            {profile.metadata?.displayName ? (
+              <>
+                <b>{profile.metadata?.displayName}</b>
+                <p className="text-gray-500 text-base">
+                  @{profile.handle.fullHandle}
+                </p>
+              </>
+            ) : (
+              <b>{profile.handle.fullHandle}</b>
+            )}
+          </div>
+          <div className="flex gap-2">
+            <div className="w-32">
+              <Button disabled={!profile.signless}>Follow</Button>
+            </div>
+            <div className="w-32">
+              <Button color="danger">Block</Button>
+            </div>
+          </div>
+        </div>
       </h1>
 
       {session?.authenticated && session.type === SessionType.WithProfile && (
@@ -38,18 +60,19 @@ export function Profile({
         </div>
       )}
 
-      <MyPublications id={profile.id} />
-
-      <div className="flex w-fit gap-5 items-center justify-between">
+      <div className="flex w-fit bg-gray-100 rounded-lg p-5 gap-5 items-center justify-between">
         <div className="flex flex-col gap-2 items-center">
-          <h1 className="uppercase text-sm">Followers</h1>
-          <b>{profile?.stats.followers}</b>
+          <h1 className="uppercase text-xs">Followers</h1>
+          <b className="text-2xl">{profile?.stats.followers}</b>
         </div>
+        <div className="w-[1px] py-6 bg-gray-300" />
         <div className="flex flex-col gap-2 items-center">
-          <h1 className="uppercase text-sm">Followings</h1>
-          <b>{profile?.stats.following}</b>
+          <h1 className="uppercase text-xs">Followings</h1>
+          <b className="text-2xl">{profile?.stats.following}</b>
         </div>
       </div>
+
+      <UserPublications id={profile.id} />
     </div>
   );
 }

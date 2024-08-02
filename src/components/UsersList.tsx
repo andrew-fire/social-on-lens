@@ -15,8 +15,9 @@ export function UsersList() {
   if (!profiles?.items) return <p>There no profiles</p>;
 
   return (
-    <div className="flex flex-wrap gap-3 justify-center">
-      {profiles.items.map((profile: ProfileFields, i: number) => (
+    <div className="flex flex-col w-1/4 gap-2">
+      <b>TOP 10 users</b>
+      {profiles.items.slice(0,10).map((profile: ProfileFields, i: number) => (
         <UserCard key={i} profile={profile} />
       ))}
     </div>

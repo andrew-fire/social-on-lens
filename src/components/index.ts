@@ -10,4 +10,6 @@ export * from "./UsersList";
 export * from "./UserCard";
 export * from "./Composer";
 export * from "./UpdateMyProfile";
-export * from "./MyPublications";
+export * from "./UserPublications";
+export * from "./PublicationsList";
+export * from "./PublicationsListItem";

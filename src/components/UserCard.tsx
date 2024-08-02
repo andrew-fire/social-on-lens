@@ -23,7 +23,7 @@ export function UserCard({ profile }: { profile: ProfileFields }) {
   };
 
   return (
-    <div className="border rounded h-64 w-56 border-gray-300 p-2 px-3 flex flex-col gap-2 justify-between">
+    <div className="border rounded h-32 border-gray-300 p-2 px-3 flex flex-col gap-2 justify-between">
       <div className="flex flex-col gap-2">
         <span className="text-xl">{profile?.handle?.localName}</span>
         <span className="text-gray-500 text-xs truncate">

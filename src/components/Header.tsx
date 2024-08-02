@@ -14,19 +14,20 @@ export function Header({
   session?: Session;
 }) {
   return (
-    <div className="w-full flex items-center justify-between gap-3 bg-gray-100 rounded-xl p-4">
+    <div className="w-full flex items-center justify-between gap-3 border-b-gray-300 border-b sticky top-0 bg-gray-100 p-4">
       <h1 className="font-bold uppercase">Social on Lens</h1>
       <div className="flex gap-10 items-center">
         <Link href={`/explore`}>Explore</Link>
-        {session?.authenticated && <Link href={`/${address}`}>My Profile</Link>}
-        {isConnected ? (
-          <div className="flex items-center gap-2">
-            {truncateEthAddress(address)}
-            <LogoutButton />
-          </div>
-        ) : (
-          <ConnectWalletButton />
+        {session?.authenticated && (
+          <>
+            <Link href={`/${address}`}>My Profile</Link>
+            <div className="flex items-center gap-2">
+              {truncateEthAddress(address)}
+              <LogoutButton />
+            </div>
+          </>
         )}
+        {isConnected ? <LogoutButton /> : <ConnectWalletButton />}
       </div>
     </div>
   );

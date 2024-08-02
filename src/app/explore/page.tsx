@@ -4,22 +4,21 @@ import { useAccount } from "wagmi";
 import { Header } from "@/components/Header";
 import { useLogin, useSession } from "@lens-protocol/react-web";
 import { ApolloContextProvider } from "@/contexts/apolloContext";
-import { Button, UsersList } from "@/components";
+import { Button, PublicationsList, UsersList } from "@/components";
 
 export default function Home() {
-  const { isConnected, address: myAddress } = useAccount();
+  const { isConnected, address } = useAccount();
   const { data: session } = useSession();
 
   return (
     <ApolloContextProvider>
-      <main className="w-full flex min-h-screen flex-col gap-5 p-8">
-        <Header
-          isConnected={isConnected}
-          address={myAddress}
-          session={session}
-        />
+      <Header isConnected={isConnected} address={address} session={session} />
 
-        <UsersList />
+      <main className="w-full flex min-h-screen flex-col gap-5 p-8">
+        <div className="flex justify-between">
+          <PublicationsList />
+          <UsersList />
+        </div>
       </main>
     </ApolloContextProvider>
   );

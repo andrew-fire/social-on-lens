@@ -15,13 +15,8 @@ export default function Home() {
 
   return (
     <ApolloContextProvider>
+      <Header isConnected={isConnected} address={myAddress} session={session} />
       <main className="w-full flex min-h-screen flex-col gap-5 p-8">
-        <Header
-          isConnected={isConnected}
-          address={myAddress}
-          session={session}
-        />
-
         <Profile address={address} session={session} />
       </main>
     </ApolloContextProvider>
