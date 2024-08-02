@@ -7,24 +7,26 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "test:e2e": "playwright test"
+    "lint": "next lint"
   },
   "dependencies": {
     "@apollo/client": "^3.11.0-rc.2",
+    "@lens-protocol/metadata": "^1.2.0",
     "@lens-protocol/react-web": "latest",
     "@lens-protocol/wagmi": "latest",
     "@tanstack/react-query": "^5.29.2",
     "connectkit": "^1.7.3",
     "graphql": "^16.9.0",
+    "ipfs-http-client": "^60.0.1",
+    "kubo-rpc-client": "^4.1.1",
     "next": "^14.2.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "viem": "^2.9.16",
-    "wagmi": "^2.5.19"
+    "wagmi": "^2.5.19",
+    "zod": "^3.23.8"
   },
   "devDependencies": {
-    "@playwright/test": "^1.43.1",
     "@types/node": "^20.12.7",
     "@types/react": "^18.2.79",
     "@types/react-dom": "^18.2.25",
