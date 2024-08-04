@@ -1,22 +1,51 @@
 import { gql } from "@apollo/client";
 
-export const PROFILE_QUERY = gql`
+export const GET_PROFILE_ID_QUERY = gql`
   query DefaultProfile($address: EvmAddress!) {
     defaultProfile(request: { for: $address }) {
       id
+    }
+  }
+`;
+
+export const PROFILE_QUERY = gql`
+  query profile($request: ProfileRequest!) {
+    profile(request: $request) {
+      id
       signless
+      ownedBy {
+        address
+      }
+      followModule {
+        ... on UnknownFollowModuleSettings {
+          contract {
+            address
+            chainId
+          }
+        }
+      }
+      followNftAddress {
+        address
+        chainId
+      }
       stats {
         followers
         following
+        publications
       }
       handle {
         fullHandle
       }
       operations {
+        id
         isFollowedByMe {
           value
           isFinalisedOnchain
         }
+        canBlock
+        canUnblock
+        canFollow
+        canUnfollow
       }
       metadata {
         displayName
@@ -38,6 +67,18 @@ export const EXPLORE_PROFILE_QUERY = gql`
       items {
         id
         signless
+        followModule {
+          ... on UnknownFollowModuleSettings {
+            contract {
+              address
+              chainId
+            }
+          }
+        }
+        followNftAddress {
+          address
+          chainId
+        }
         handle {
           fullHandle
         }
@@ -50,6 +91,7 @@ export const EXPLORE_PROFILE_QUERY = gql`
           following
         }
         operations {
+          id
           isFollowedByMe {
             value
             isFinalisedOnchain

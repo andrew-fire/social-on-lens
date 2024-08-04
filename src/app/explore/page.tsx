@@ -7,12 +7,12 @@ import { ApolloContextProvider } from "@/contexts/apolloContext";
 import { Button, PublicationsList, UsersList } from "@/components";
 
 export default function Home() {
-  const { isConnected, address } = useAccount();
+  const { isConnected } = useAccount();
   const { data: session } = useSession();
 
   return (
     <ApolloContextProvider>
-      <Header isConnected={isConnected} address={address} session={session} />
+      <Header isConnected={isConnected} session={session} />
 
       <main className="w-full flex min-h-screen flex-col gap-5 p-8">
         <div className="flex justify-between">

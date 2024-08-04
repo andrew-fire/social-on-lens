@@ -13,3 +13,4 @@ export * from "./UpdateMyProfile";
 export * from "./UserPublications";
 export * from "./PublicationsList";
 export * from "./PublicationsListItem";
+export * from "./FollowButton";

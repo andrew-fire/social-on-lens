@@ -12,7 +12,7 @@ export default function Home() {
 
   return (
     <ApolloContextProvider>
-      <Header isConnected={isConnected} address={address} session={session} />
+      <Header isConnected={isConnected} session={session} />
 
       <main className="w-full flex min-h-screen flex-col gap-5 p-8">
         {address && !session?.authenticated && <LoginForm owner={address} />}

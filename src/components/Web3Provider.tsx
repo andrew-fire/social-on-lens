@@ -7,6 +7,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ConnectKitProvider, getDefaultConfig } from "connectkit";
 import { LensConfig, LensProvider, development, production } from "@lens-protocol/react-web";
 import { bindings } from "@lens-protocol/wagmi";
+import { ethers } from "ethers";
 
 // connect kit doesn't export the config type, so we create it here
 type ConnectKitConfig = Parameters<typeof getDefaultConfig>[0];
@@ -41,7 +42,7 @@ const appConfigs = {
 // select the config based on the environment
 const appConfig = appConfigs["development"]; // or appConfigs["production"]
 
-const wagmiConfig = createConfig(
+export const wagmiConfig = createConfig(
   getDefaultConfig({
     appName: "Lens SDK Next.js Starter App",
     walletConnectProjectId: process.env.NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID!,
@@ -69,3 +70,14 @@ export function Web3Provider({ children }: { children: React.ReactNode }) {
     </WagmiProvider>
   );
 }
+
+export const getSigner = async () => {
+  const provider = new ethers.providers.Web3Provider(
+      (window as any).ethereum
+  );
+  // Request user accounts
+  await provider.send("eth_requestAccounts", []);
+  // Get the signer object
+  const signer = provider.getSigner();
+  return signer;
+};

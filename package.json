@@ -16,6 +16,7 @@
     "@lens-protocol/wagmi": "latest",
     "@tanstack/react-query": "^5.29.2",
     "connectkit": "^1.7.3",
+    "ethers": "^6.13.2",
     "graphql": "^16.9.0",
     "ipfs-http-client": "^60.0.1",
     "kubo-rpc-client": "^4.1.1",
