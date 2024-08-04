@@ -18,8 +18,8 @@ export function PublicationsList() {
   return (
     <div className="flex flex-col w-full gap-3">
       <b>Latest Publications</b>
-      {publications.items.map((item: Post) => (
-        <PublicationsListItem item={item} />
+      {publications.items.map((item: Post, id: number) => (
+        <PublicationsListItem key={id} item={item} />
       ))}
     </div>
   );
