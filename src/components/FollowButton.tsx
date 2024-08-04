@@ -13,27 +13,32 @@ import {
   Profile,
   resolveFollowPolicy,
   useFollow,
+  useUnfollow,
   useUpdateFollowPolicy,
 } from "@lens-protocol/react-web";
+import { useState } from "react";
+import { Loading } from "./Loading";
 
 export function FollowButton({ profile }: { profile: Profile }) {
-  const [follow] = useMutation(FOLLOW_TYPED_DATA_MUTATION);
-  const [unfollow] = useMutation(UNFOLLOW_TYPED_DATA_MUTATION);
-  const [setFollow] = useMutation(SET_FOLLOW_MODULE_MUTATION);
-  const [broadcastTxn, { loading }] = useMutation(BROADCAST_TXN_MUTATION);
+  const [loading, setLoading] = useState<boolean>(false);
+
+  // const [follow] = useMutation(FOLLOW_TYPED_DATA_MUTATION);
+  // const [unfollow] = useMutation(UNFOLLOW_TYPED_DATA_MUTATION);
+  // const [setFollow] = useMutation(SET_FOLLOW_MODULE_MUTATION);
+  // const [broadcastTxn, { loading }] = useMutation(BROADCAST_TXN_MUTATION);
 
   const { execute: execFollow } = useFollow();
-  console.log(profile);
+  const { execute: execUnfollow } = useUnfollow();
   const followPolicy = resolveFollowPolicy(profile);
 
-  const signAction = async ({ id, domain, types, value }) => {
-    const signer = await getSigner();
-    const signature = await signer._signTypedData(domain, types, value);
-    console.log("signedTypedData", signature);
+  // const signAction = async ({ id, domain, types, value }) => {
+  //   const signer = await getSigner();
+  //   const signature = await signer._signTypedData(domain, types, value);
+  //   console.log("signedTypedData", signature);
 
-    const res = await broadcastTxn({ variables: { id, signature } });
-    console.log("res", res);
-  };
+  //   const res = await broadcastTxn({ variables: { id, signature } });
+  //   console.log("res", res);
+  // };
 
   const handleFollow = async () => {
     // const { data } = await follow({
@@ -50,27 +55,31 @@ export function FollowButton({ profile }: { profile: Profile }) {
 
     const result = await execFollow({ profile });
     console.log(result);
+    setLoading(true);
+    const completion = await result.value.waitForCompletion();
+    if (completion.isFailure()) window.alert(completion.error.message);
+    setLoading(false);
   };
 
   const handleUnFollow = async () => {
-    const { data } = await unfollow({
-      variables: { profileId: profile.id },
-    });
-    const { domain, types, value } = data.createUnfollowTypedData.typedData;
-    console.log("createUnfollowTypedData", data.createUnfollowTypedData, {
-      domain,
-      types,
-      value,
-    });
+    // const { data } = await unfollow({
+    //   variables: { profileId: profile.id },
+    // });
+    // const { domain, types, value } = data.createUnfollowTypedData.typedData;
+    // console.log("createUnfollowTypedData", data.createUnfollowTypedData, {
+    //   domain,
+    //   types,
+    //   value,
+    // });
 
-    signAction({ id: data.createUnfollowTypedData.id, domain, types, value });
+    // signAction({ id: data.createUnfollowTypedData.id, domain, types, value });
+    const result = await execUnfollow({ profile });
+    console.log(result);
   };
 
   if (followPolicy.type != FollowPolicyType.ANYONE) {
     return <p>Cannot follow this profile</p>;
   }
-
-  console.log(profile.operations.canFollow);
 
   return (
     <Button
@@ -82,7 +91,11 @@ export function FollowButton({ profile }: { profile: Profile }) {
       }
       color={profile.operations.isFollowedByMe.value ? "success" : "primary"}
     >
-      {profile.operations.isFollowedByMe.value ? "Unfollow" : "Follow"}
+      {loading ? (
+        <Loading />
+      ) : (
+        <>{profile.operations.isFollowedByMe.value ? "Unfollow" : "Follow"}</>
+      )}
     </Button>
   );
 }

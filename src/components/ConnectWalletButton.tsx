@@ -4,8 +4,12 @@ import { Button } from "./Button";
 export function ConnectWalletButton() {
   return (
     <ConnectKitButton.Custom>
-      {({ isConnected, show, truncatedAddress }) => {
-        return <Button onClick={show}>Login</Button>;
+      {({ show }) => {
+        return (
+          <Button onClick={show} color="secondary">
+            Connect your wallet
+          </Button>
+        );
       }}
     </ConnectKitButton.Custom>
   );

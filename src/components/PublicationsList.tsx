@@ -16,7 +16,7 @@ export function PublicationsList() {
   if (!publications?.items) return <p>There no publications</p>;
 
   return (
-    <div className="flex flex-col w-1/2 gap-3">
+    <div className="flex flex-col w-full gap-3">
       <b>Latest Publications</b>
       {publications.items.map((item: Post) => (
         <PublicationsListItem item={item} />

@@ -13,10 +13,10 @@ export function Button({
   onClick: any;
 }) {
   const colorMap: any = {
-    primary: "bg-blue-600",
-    success: "bg-green-600",
-    danger: "bg-red-600",
-    secondary: "bg-gray-300",
+    primary: "bg-blue-100 border-blue-400 hover:bg-blue-200",
+    success: "bg-green-100 border-green-400 hover:bg-green-200",
+    danger: "bg-red-100 border-red-400 hover:bg-red-200",
+    secondary: "bg-gray-100 border-gray-400 hover:bg-gray-200",
   };
 
   return (
@@ -24,11 +24,11 @@ export function Button({
       onClick={onClick}
       disabled={disabled}
       {...props}
-      className={`w-full flex justify-center rounded-md ${
+      className={`w-full border text-black rounded-full flex justify-center ${
         colorMap[color ?? "primary"]
-      } px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:${
+      } px-3 py-1.5 text-sm font-semibold leading-6 shadow-sm hover:${
         colorMap[color ?? "primary"]
-      } focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 disabled:opacity-75`}
+      } disabled:opacity-75`}
     >
       {children}
     </button>

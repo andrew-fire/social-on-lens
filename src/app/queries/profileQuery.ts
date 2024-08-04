@@ -81,6 +81,7 @@ export const EXPLORE_PROFILE_QUERY = gql`
         }
         handle {
           fullHandle
+          localName
         }
         ownedBy {
           address
@@ -94,7 +95,16 @@ export const EXPLORE_PROFILE_QUERY = gql`
           id
           isFollowedByMe {
             value
-            isFinalisedOnchain
+          }
+        }
+        metadata {
+          displayName
+          picture {
+            ... on ImageSet {
+              raw {
+                uri
+              }
+            }
           }
         }
       }

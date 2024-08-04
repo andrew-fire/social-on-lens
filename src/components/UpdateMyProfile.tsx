@@ -10,8 +10,6 @@ export function UpdateMyProfile({
 }) {
   const { execute, loading } = useSetProfileMetadata();
 
-  console.log(session);
-
   const update = async () => {
     if (!session?.authenticated) return;
 

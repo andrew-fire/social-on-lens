@@ -7,7 +7,6 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ConnectKitProvider, getDefaultConfig } from "connectkit";
 import { LensConfig, LensProvider, development, production } from "@lens-protocol/react-web";
 import { bindings } from "@lens-protocol/wagmi";
-import { ethers } from "ethers";
 
 // connect kit doesn't export the config type, so we create it here
 type ConnectKitConfig = Parameters<typeof getDefaultConfig>[0];
@@ -53,7 +52,7 @@ export const wagmiConfig = createConfig(
 
 const queryClient = new QueryClient();
 
-const lensConfig: LensConfig = {
+export const lensConfig: LensConfig = {
   environment: development, // or production
   bindings: bindings(wagmiConfig),
   ...appConfig.lens,
@@ -71,13 +70,13 @@ export function Web3Provider({ children }: { children: React.ReactNode }) {
   );
 }
 
-export const getSigner = async () => {
-  const provider = new ethers.providers.Web3Provider(
-      (window as any).ethereum
-  );
-  // Request user accounts
-  await provider.send("eth_requestAccounts", []);
-  // Get the signer object
-  const signer = provider.getSigner();
-  return signer;
-};
+// export const getSigner = async () => {
+//   const provider = new ethers.providers.Web3Provider(
+//       (window as any).ethereum
+//   );
+//   // Request user accounts
+//   await provider.send("eth_requestAccounts", []);
+//   // Get the signer object
+//   const signer = provider.getSigner();
+//   return signer;
+// };

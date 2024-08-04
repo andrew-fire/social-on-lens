@@ -4,6 +4,7 @@ export * from "./ErrorMessage";
 export * from "./Loading";
 export * from "./LoginForm";
 export * from "./LogoutButton";
+export * from "./LoginButton";
 export * from "./Profile";
 export * from "./Web3Provider";
 export * from "./UsersList";
