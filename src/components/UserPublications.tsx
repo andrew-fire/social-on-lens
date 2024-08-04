@@ -2,8 +2,9 @@ import { PublicationsListItem } from "./PublicationsListItem";
 import { useQuery } from "@apollo/client";
 import { USER_PUBLICATIONS_QUERY } from "@/app/queries";
 import { Loading } from "./Loading";
+import { Post } from "@lens-protocol/react-web";
 
-export function UserPublications({ id }) {
+export function UserPublications({ id }: { id: String }) {
   const { data, loading, error } = useQuery(USER_PUBLICATIONS_QUERY, {
     variables: { id },
   });
@@ -16,8 +17,8 @@ export function UserPublications({ id }) {
   return (
     <div className="flex flex-col gap-3">
       <b>All Publications ({publications.items.length})</b>
-      {publications.items.map((item) => (
-        <PublicationsListItem item={item} />
+      {publications.items.map((item: Post, id: number) => (
+        <PublicationsListItem key={id} item={item} />
       ))}
     </div>
   );
