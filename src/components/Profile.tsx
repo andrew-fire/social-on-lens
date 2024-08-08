@@ -34,7 +34,9 @@ export function Profile({
 
   const isAuthenticated =
     session?.authenticated && session.type === SessionType.WithProfile;
-  const isCurrentUser = profile.ownedBy.address === session?.address;
+  const isCurrentUser = isAuthenticated
+    ? profile.ownedBy.address === session.address
+    : false;
 
   return (
     <div className="flex flex-col gap-10 w-1/2">

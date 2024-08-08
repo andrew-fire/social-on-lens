@@ -1,17 +1,9 @@
-import { ReactNode } from "react";
+import { MouseEventHandler, ReactNode } from "react";
 
 export function Button({
   children,
-  color,
-  disabled,
-  onClick,
   ...props
-}: {
-  children: ReactNode;
-  color?: string;
-  disabled?: boolean;
-  onClick: any;
-}) {
+}: React.ButtonHTMLAttributes<HTMLButtonElement>) {
   const colorMap: any = {
     primary: "bg-blue-100 border-blue-400 hover:bg-blue-200",
     success: "bg-green-100 border-green-400 hover:bg-green-200",
@@ -21,13 +13,11 @@ export function Button({
 
   return (
     <button
-      onClick={onClick}
-      disabled={disabled}
       {...props}
       className={`w-full border text-black rounded-full flex justify-center ${
-        colorMap[color ?? "primary"]
+        colorMap[props.color ?? "primary"]
       } px-3 py-1.5 text-sm font-semibold leading-6 shadow-sm hover:${
-        colorMap[color ?? "primary"]
+        colorMap[props.color ?? "primary"]
       } disabled:opacity-75`}
     >
       {children}

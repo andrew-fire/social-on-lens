@@ -1,5 +1,5 @@
 import { truncateEthAddress } from "@/utils/truncateEthAddress";
-import { Session } from "@lens-protocol/react-web";
+import { Session, WalletOnlySession } from "@lens-protocol/react-web";
 import Link from "next/link";
 import { LogoutButton } from "./LogoutButton";
 import { useQuery } from "@apollo/client";
@@ -14,7 +14,7 @@ export function Header({
   session?: Session;
 }) {
   const { data, loading, error } = useQuery(GET_PROFILE_ID_QUERY, {
-    variables: { address: session?.address },
+    variables: { address: session?.authenticated ? session.address : null },
   });
 
   return (

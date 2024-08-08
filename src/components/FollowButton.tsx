@@ -1,20 +1,10 @@
 import { Button } from "./Button";
-import { signTypedData } from "@wagmi/core";
-import { getSigner, wagmiConfig } from "./Web3Provider";
-import {
-  BROADCAST_TXN_MUTATION,
-  FOLLOW_TYPED_DATA_MUTATION,
-  SET_FOLLOW_MODULE_MUTATION,
-  UNFOLLOW_TYPED_DATA_MUTATION,
-} from "@/app/mutations";
-import { useMutation } from "@apollo/client";
 import {
   FollowPolicyType,
   Profile,
   resolveFollowPolicy,
   useFollow,
   useUnfollow,
-  useUpdateFollowPolicy,
 } from "@lens-protocol/react-web";
 import { useState } from "react";
 import { Loading } from "./Loading";
@@ -54,10 +44,18 @@ export function FollowButton({ profile }: { profile: Profile }) {
     // signAction({ id: data.createFollowTypedData.id, domain, types, value });
 
     const result = await execFollow({ profile });
-    console.log(result);
+
     setLoading(true);
+
+    if (result.isFailure()) {
+      // handle failure scenarios
+      setLoading(false);
+      return;
+    }
+
     const completion = await result.value.waitForCompletion();
     if (completion.isFailure()) window.alert(completion.error.message);
+
     setLoading(false);
   };
 

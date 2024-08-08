@@ -1,8 +1,9 @@
 "use client";
 
+import { Post } from "@lens-protocol/react-web";
 import React from "react";
 
-export function PublicationsListItem({ item }) {
+export function PublicationsListItem({ item }: { item: Post }) {
   return (
     <>
       {item.metadata.content && (
